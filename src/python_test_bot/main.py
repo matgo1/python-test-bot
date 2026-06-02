@@ -1,11 +1,12 @@
-import asycncio
+import asyncio
 import logging
 import sys
 from aiogram import Dispatcher, Bot
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
 
-from src.configure import config
+from python_test_bot.configure import config
+from python_test_bot.test_commands import router as default_commands_rt
 
 
 async def main():
@@ -26,7 +27,7 @@ async def main():
     dp = Dispatcher()
 
     # Include all all routers
-    dp.include_router(get_handlers_routers())
+    dp.include_router(default_commands_rt)
 
     try:
         await bot.delete_webhook(drop_pending_updates=True)
